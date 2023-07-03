@@ -1,5 +1,4 @@
 import os
-
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -16,6 +15,7 @@ app = Flask(
     template_folder='../client/build'
 )
 
+
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
@@ -23,10 +23,12 @@ app.json.compact = False
 migrate = Migrate(app, db)
 db.init_app(app)
 
+
 @app.route('/')
 @app.route('/<int:id>')
 def index(id=0):
     return render_template("index.html")
+
 
 api = Api(app)
 
